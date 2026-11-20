@@ -1,4 +1,4 @@
-# n8n-nodes-stirling-pdf
+# @marcostoduto/n8n-nodes-stirling-pdf
 
 An [n8n](https://n8n.io) community node for [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF), the self-hosted PDF toolkit.
 Use it to merge, split, convert, compress, OCR, watermark, secure and analyze PDFs in your workflows.
@@ -12,13 +12,13 @@ Follow the [community nodes installation guide](https://docs.n8n.io/integrations
 In n8n, go to **Settings → Community Nodes → Install** and enter:
 
 ```
-n8n-nodes-stirling-pdf
+@marcostoduto/n8n-nodes-stirling-pdf
 ```
 
 For a self-hosted n8n running in Docker you can also install it manually:
 
 ```bash
-cd ~/.n8n/nodes && npm install n8n-nodes-stirling-pdf
+cd ~/.n8n/nodes && npm install @marcostoduto/n8n-nodes-stirling-pdf
 ```
 
 ## Credentials
@@ -89,6 +89,21 @@ npm run build
 npm run lint
 npm run dev   # starts n8n with the node loaded and hot reload
 ```
+
+## Releasing
+
+Releases are published to npm by GitHub Actions (`.github/workflows/publish.yml`) with npm provenance, which n8n requires for community node verification.
+
+1. **First release only**: create an npm granular access token with publish rights and save it as the `NPM_TOKEN` repository secret (GitHub → Settings → Secrets and variables → Actions). After the package exists on npm you can switch to [Trusted Publishing](https://docs.npmjs.com/trusted-publishers) (workflow `publish.yml`) and delete the secret.
+2. On an up-to-date `main` branch run:
+
+   ```bash
+   npm run release
+   ```
+
+   This lints, builds, bumps the version, updates the changelog, then commits, tags and pushes. The pushed tag (e.g. `0.1.1`) triggers the publish workflow.
+
+To publish the current version as is, push a tag that matches `package.json`, for example `git tag 0.1.0 && git push origin 0.1.0`.
 
 ## Resources
 
